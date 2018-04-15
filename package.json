@@ -1,0 +1,11 @@
+{
+  "name": "ht-image",
+  "version": "1.0.0",
+  "main": "ht-image.js",
+  "repository": "https://github.com/maksimyurkov/ht-image",
+  "author": "maksimyurkov <yurkov.maksim.sergeevich@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@polymer/lit-element": "@next"
+  }
+}
