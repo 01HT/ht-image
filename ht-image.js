@@ -1,7 +1,7 @@
 "use strict";
 import { LitElement, html } from "@polymer/lit-element";
 class HTImage extends LitElement {
-  render({ placeholder, image }) {
+  _render({ placeholder, image }) {
     return html`
       <style>
         :host {
