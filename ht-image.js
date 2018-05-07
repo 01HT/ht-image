@@ -24,7 +24,6 @@ class HTImage extends LitElement {
           background:#e2e2e2;
           width:100%;
           overflow:hidden;
-          padding-bottom: ${this.getPadding()}%;
         }
 
         #placeholder {
@@ -40,7 +39,7 @@ class HTImage extends LitElement {
           opacity:0;
         }
       </style>
-      <picture>
+      <picture style=${`padding-bottom: ${this.getPadding()}%;`}>
         <img id="placeholder" loading src=${placeholder}>
         <img id="image" loading src=${image}>
       </picture>
