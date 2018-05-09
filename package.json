@@ -6,6 +6,6 @@
   "author": "maksimyurkov <yurkov.maksim.sergeevich@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@polymer/lit-element": "@next"
+    "@polymer/lit-element": "^0.5.1"
   }
 }
