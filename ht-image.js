@@ -21,9 +21,13 @@ class HTImage extends LitElement {
         picture {
           display: flex;
           position:relative;
-          background:#e2e2e2;
+          
           width:100%;
           overflow:hidden;
+        }
+
+        picture[loading] {
+          background:#e2e2e2;
         }
 
         #placeholder {
@@ -39,7 +43,7 @@ class HTImage extends LitElement {
           opacity:0;
         }
       </style>
-      <picture style=${`padding-bottom: ${this.getPadding()}%;`}>
+      <picture loading style=${`padding-bottom: ${this.getPadding()}%;`}>
         <img id="placeholder" loading src=${placeholder}>
         <img id="image" loading src=${image}>
       </picture>
@@ -54,7 +58,8 @@ class HTImage extends LitElement {
     return {
       placeholder: String,
       image: String,
-      size: String
+      size: String,
+      ratio: String
     };
   }
 
@@ -63,13 +68,19 @@ class HTImage extends LitElement {
   }
 
   getPadding() {
-    if (this.size === undefined) return "100";
-    let size = this.size.split("x");
-    return "" + size[1] / size[0] * 100;
+    if (this.size) {
+      let size = this.size.split("x");
+      return "" + size[1] / size[0] * 100;
+    }
+    if (this.ratio) {
+      return "" + (2 - this.ratio) * 100;
+    }
+    if (this.size === undefined && this.ratio === undefined) return "100";
   }
 
   ready() {
     super.ready();
+    this.shadowRoot.querySelector("picture").removeAttribute("loading", "");
     this.shadowRoot.querySelectorAll("img").forEach(img => {
       img.addEventListener("load", e => {
         e.target.removeAttribute("loading", "");
