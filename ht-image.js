@@ -1,7 +1,8 @@
 "use strict";
 import { LitElement, html } from "@polymer/lit-element";
 class HTImage extends LitElement {
-  _render({ placeholder, image }) {
+  render() {
+    const { placeholder, image } = this;
     return html`
       <style>
         :host {
@@ -9,7 +10,6 @@ class HTImage extends LitElement {
           position:relative;
           box-sizing:border-box;
         }
-
         img {
           position: absolute;
           top:0;
@@ -17,7 +17,6 @@ class HTImage extends LitElement {
           width: 100%;
           display:block;
         }
-
         picture {
           display: flex;
           position:relative;
@@ -25,20 +24,16 @@ class HTImage extends LitElement {
           width:100%;
           overflow:hidden;
         }
-
         picture[loading] {
           background:#e2e2e2;
         }
-
         #placeholder {
           filter:blur(5px);
           transition: opacity 0.5s;
         }
-
         #image {
           transition: opacity 0.7s;
         }
-
         [loading] {
           opacity:0;
         }
@@ -56,15 +51,11 @@ class HTImage extends LitElement {
 
   static get properties() {
     return {
-      placeholder: String,
-      image: String,
-      size: String,
-      ratio: String
+      placeholder: { type: String },
+      image: { type: String },
+      size: { type: String },
+      ratio: { type: String }
     };
-  }
-
-  constructor() {
-    super();
   }
 
   getPadding() {
@@ -78,8 +69,7 @@ class HTImage extends LitElement {
     if (this.size === undefined && this.ratio === undefined) return "100";
   }
 
-  ready() {
-    super.ready();
+  firstUpdated() {
     this.shadowRoot.querySelector("picture").removeAttribute("loading", "");
     this.shadowRoot.querySelectorAll("img").forEach(img => {
       img.addEventListener("load", e => {

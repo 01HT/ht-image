@@ -1,11 +1,11 @@
 {
   "name": "@01ht/ht-image",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "ht-image.js",
   "repository": "01ht/ht-image",
-  "author": "01ht Ltd",
+  "author": "01HT Ltd",
   "license": "UNLICENSED",
   "dependencies": {
-    "@polymer/lit-element": "^0.5.1"
+    "@polymer/lit-element": "^0.6.1"
   }
 }
