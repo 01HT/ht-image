@@ -2,7 +2,7 @@
 import { LitElement, html } from "@polymer/lit-element";
 class HTImage extends LitElement {
   render() {
-    const { placeholder, image } = this;
+    const { placeholder, image, altText } = this;
     return html`
       <style>
         :host {
@@ -39,8 +39,10 @@ class HTImage extends LitElement {
         }
       </style>
       <picture loading style=${`padding-bottom: ${this.getPadding()}%;`}>
-        <img id="placeholder" loading src=${placeholder}>
-        <img id="image" loading src=${image}>
+        <img id="placeholder" loading src=${placeholder} alt=${
+      altText ? altText : ""
+    }>
+        <img id="image" loading src=${image} alt=${altText ? altText : ""}>
       </picture>
 `;
   }
@@ -54,7 +56,8 @@ class HTImage extends LitElement {
       placeholder: { type: String },
       image: { type: String },
       size: { type: String },
-      ratio: { type: String }
+      ratio: { type: String },
+      altText: { type: String }
     };
   }
 
