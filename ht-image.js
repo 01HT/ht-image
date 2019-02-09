@@ -1,54 +1,51 @@
 "use strict";
-import { LitElement, html } from "@polymer/lit-element";
+import { LitElement, html, css } from "lit-element";
 class HTImage extends LitElement {
+  static styles = css`<style>
+    :host {
+      display: block;
+      position:relative;
+      box-sizing:border-box;
+    }
+    img {
+      position: absolute;
+      top:0;
+      left:0;
+      width: 100%;
+      display:block;
+    }
+    picture {
+      display: flex;
+      position:relative;
+      
+      width:100%;
+      overflow:hidden;
+    }
+    picture[loading] {
+      background:#e2e2e2;
+    }
+    #placeholder {
+      filter:blur(5px);
+      transition: opacity 0.5s;
+    }
+    #image {
+      transition: opacity 0.7s;
+    }
+    [loading] {
+      opacity:0;
+    }
+  </style>`;
+
   render() {
     const { placeholder, image, altText } = this;
     return html`
-      <style>
-        :host {
-          display: block;
-          position:relative;
-          box-sizing:border-box;
-        }
-        img {
-          position: absolute;
-          top:0;
-          left:0;
-          width: 100%;
-          display:block;
-        }
-        picture {
-          display: flex;
-          position:relative;
-          
-          width:100%;
-          overflow:hidden;
-        }
-        picture[loading] {
-          background:#e2e2e2;
-        }
-        #placeholder {
-          filter:blur(5px);
-          transition: opacity 0.5s;
-        }
-        #image {
-          transition: opacity 0.7s;
-        }
-        [loading] {
-          opacity:0;
-        }
-      </style>
-      <picture loading style=${`padding-bottom: ${this.getPadding()}%;`}>
-        <img id="placeholder" loading src=${placeholder} alt=${
+      <picture loading style="${`padding-bottom: ${this.getPadding()}%;`}">
+        <img id="placeholder" loading src="${placeholder}" alt="${
       altText ? altText : ""
-    }>
-        <img id="image" loading src=${image} alt=${altText ? altText : ""}>
+    }">
+        <img id="image" loading src="${image}" alt="${altText ? altText : ""}">
       </picture>
 `;
-  }
-
-  static get is() {
-    return "ht-image";
   }
 
   static get properties() {
@@ -82,4 +79,4 @@ class HTImage extends LitElement {
   }
 }
 
-customElements.define(HTImage.is, HTImage);
+customElements.define("ht-image", HTImage);
